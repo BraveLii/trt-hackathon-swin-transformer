@@ -19,4 +19,11 @@ Swin Transformer借鉴了许多卷积神经网络的设计理念以及先验知�
 - 其中Swin Transformer Block主要由LayerNorm,MLP,Window Attention和Shifted Window Attention等组成。
 
 ### 模型优化的难点
-由于模型引入了patch merging以及shift window attention机制，在图优化、算子支持方面都有很大优化空间。
+- 使用源代码模型导出onnx不成功
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! 
+
+- 转trt不成功
+void myelin::ir::unop_fold(myelin::ir::operation_t*, size_t, size_t, size_t, size_t, const symbolic_shape_t&, const symbolic_shape_t&, const symbolic_shape_t&, output_type*, output_type*) [with output_type = float; size_t = long unsigned int; myelin::symbolic_shape_t = std::vector<myelin::symbolic_value_t>]: Assertion `0' failed.
+Aborted (core dumped)
+
+- 由于模型引入了patch merging以及shift window attention机制，在图优化、算子支持方面都有很大优化空间。
