@@ -27,3 +27,7 @@ void myelin::ir::unop_fold(myelin::ir::operation_t*, size_t, size_t, size_t, siz
 Aborted (core dumped)
 
 - 由于模型引入了patch merging以及shift window attention机制，在图优化、算子支持方面都有很大优化空间。
+
+### 优化的过程
+#### 模型导出和转换[见此处](docs/build_model.md)
+

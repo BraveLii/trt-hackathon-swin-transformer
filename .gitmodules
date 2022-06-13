@@ -1,0 +1,6 @@
+[submodule "Swi-Transformer"]
+	path = Swi-Transformer
+	url = https://github.com/microsoft/Swin-Transformer.git
+[submodule "Swin-Transformer"]
+	path = Swin-Transformer
+	url = https://github.com/microsoft/Swin-Transformer.git
