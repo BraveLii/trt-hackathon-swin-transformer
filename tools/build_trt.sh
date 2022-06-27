@@ -22,4 +22,5 @@ trtexec  --workspace=1073741824  \
 --onnx=$onnx_model \
 --saveEngine=$trt_model \
 --plugins=/workspace/plugin/layerNorm/LayerNormPlugin.so \
+--dumpOutput \
 # --verbose

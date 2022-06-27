@@ -68,11 +68,9 @@ int32_t LayerNormPlugin::enqueue(const PluginTensorDesc* inputDesc, const Plugin
     const int nBlock = inputDesc[0].dims.d[0] * inputDesc[0].dims.d[1];
     const int nValuePerBlock = inputDesc[0].dims.d[inputDesc[0].dims.nbDims-1];
 
-    std::cout << "nbDims: " << inputDesc[0].dims.nbDims << std::endl;
-    std::cout << "nBlock: " << nBlock << std::endl;
-    std::cout << "nValuePerBlock: " << nValuePerBlock << std::endl;
-    // std::cout << "inputDesc[0].dims.d[2]: " << inputDesc[0].dims.d[2] << std::endl;
-    // std::cout << "inputDesc[0].dims.d[3]: " << inputDesc[0].dims.d[3] << std::endl;
+    // std::cout << "nbDims: " << inputDesc[0].dims.nbDims << std::endl;
+    // std::cout << "nBlock: " << nBlock << std::endl;
+    // std::cout << "nValuePerBlock: " << nValuePerBlock << std::endl;
 
     switch(nValuePerBlock){
         case 128:
@@ -92,8 +90,8 @@ int32_t LayerNormPlugin::enqueue(const PluginTensorDesc* inputDesc, const Plugin
             return -1;
     }
 
-    std::cout << "end nBlock: " << nBlock << std::endl;
-    std::cout << "end nValuePerBlock: " << nValuePerBlock << std::endl;
+    // std::cout << "end nBlock: " << nBlock << std::endl;
+    // std::cout << "end nValuePerBlock: " << nValuePerBlock << std::endl;
     
     return 0;
 }
