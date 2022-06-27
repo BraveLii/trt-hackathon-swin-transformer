@@ -29,6 +29,32 @@ Aborted (core dumped)
 - 由于模型引入了patch merging以及shift window attention机制，在图优化、算子支持方面都有很大优化空间。
 
 ### 优化的过程
-#### 模型导出和转换[见此处](docs/build_model.md)
+#### 模型导出和转换
+操作步骤[见此处](docs/build_model.md)
 
+### 优化的过程
+评估步骤[见此处](docs/eval_model.md)
 
+优化过程中发现，导出的onnx模型转换成tensorrt之后，结果不正确。尝试在导出函数中修改do_constant_folding=False，可以使结果正确。因此下面的测试针对这两种方式分别进行。
+
+速度结果：
+针对3种模型，分别测试了在gpu上运行的fps
+||pytorch|onnx|tensorrt|
+|-|-|-|-|
+|fold|41.82|105.80|185.34|
+|unfold|41.96|105.61|181.11|
+
+精度结果：
+精度结果采用max absolute diff
+||pytorch|onnx|tensorrt|
+|-|-|-|-|
+|fold|-|2.59E-04|NAN|
+|unfold|-|2.59E-04|5.93E-04|
+
+优化结果：
+根据初赛的经验，将LyerNorm合并之后，会有很大提升，这里也尝试进行了合并操作。
+首先使用torchsummary确定了LayerNorm的输入尺寸有128、256、512、1024等四种，因此使用模版生成了这四种kernel函数。
+但是实际结果并不理想，在unfold的模型上fps只能到153，需要使用nsight工具进一步分析。
+
+## 经验与体会
+之前遇到的模型在tensorrt上能很顺利的完成转换、部署，但是这次SwinTransformer并没有想象中的那么容易。看来要优化部署一个新的模型还是很有挑战的，需要投入大量时间才能完成。

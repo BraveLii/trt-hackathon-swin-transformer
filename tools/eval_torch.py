@@ -37,15 +37,14 @@ with torch.no_grad():
     end = time.time()
     cost = (end-start)*1000
 
+output_data = output.cpu().numpy()
+print(output_data)
+
 print("=== torch result ===")
-print("model path: {}".format(args.model))
 print("infer 100 cost: {:.2f} ms".format(cost))
 print("average time: {:.2f} ms".format(cost/100.0))
 print("fps: {:.2f}".format(100.0/cost*1000))
 
 
-
-output_data = output.cpu().numpy()
-print(output_data)
 np.save('torch', output_data)
 print("save torch result to torch.npy")
