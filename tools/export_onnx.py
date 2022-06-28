@@ -11,7 +11,7 @@ from models import build_model
 def parse_option():
     parser = argparse.ArgumentParser('Swin Transformer training and evaluation script', add_help=False)
     parser.add_argument('--cfg', type=str, default="Swin-Transformer/configs/swinv2/swinv2_base_patch4_window16_256.yaml", metavar="FILE", help='path to config file')
-    parser.add_argument('--fold-constant', type=bool, default=False, help='whether to fold constant when exporting onnx')
+    parser.add_argument('--fold-constant', action="store_true", help='whether to fold constant when exporting onnx')
     args = parser.parse_args()
 
     conf = config._C.clone()
