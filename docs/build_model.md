@@ -1,5 +1,13 @@
 # build model
 
+## 环境依赖
++ 主机硬件环境：Linux version 5.4.0-110-generic (buildd@ubuntu) (gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)) , NVIDIA显卡： NVIDIA A10 (24G)
+
++ 主机软件环境：Driver Version: 510.73.08, CUDA 11.6/cuDNN8.4/TRT8.4, Docker和NVIDIA-Docker
+
++ 镜像：nvcr.io/nvidia/pytorch:21.12-py3
+
++ 容器内环境依赖：./install.sh
 ## 下载代码
     git clone https://github.com/BraveLii/trt-hackathon-swin-transformer.git
     cd trt-hackathon-swin-transformer
